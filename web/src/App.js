@@ -31,7 +31,7 @@ return (
      <input name = "longitude" id="longitude" required ></input>
      </div> 
       
-      <button type = "submit">Salva</button>
+      <button type = "submit">Salvar</button>
 
    </form>
     </aside>
