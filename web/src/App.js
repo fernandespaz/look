@@ -1,45 +1,54 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
+import api from './services/api';
 
 import './global.css';
 import './App.css';
+import './Sidebar.css'
+import './Main.css'
+
+import DevForm from './components/DevForm';
+import DevItem from './components/DevItem';
+
 
 function App() {
-return (
-  <div id="app">
-    <aside>
-   <strong>Cadastrar</strong>
-   <form>
+  const [devs, setDevs] = useState([]);
 
-     <div className="input-block" >
-     <label htmlFor="github_username " >Usuário do Github</label>
-     <input name = "github_username" id="github_username" required ></input>
-     </div>
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
 
-     <div className="input-block" >
-     <label htmlFor="techs " >Tecnologias</label>
-     <input name = "techs" id="techs" required ></input>
-     </div>
+      setDevs(response.data);
+    }
 
-     <div className="input-group">
+    loadDevs();
+  }, [devs]);
 
-     <label htmlFor="latitude" >Latitude</label>
-     <input name = "latitude" id="latitude" required ></input>
-     </div>
+  async function handleAddDev(data) {
+    const response = await api.post('/devs', data);
+    const hasDev = devs.filter(dev => dev.github_name === data.github_name);
+    
+    if(!hasDev) {
+      setDevs([...devs, response.data])
+    }  
+  }
 
-     <div className="input-group">
-     <label htmlFor="longitude" >Longitude</label>
-     <input name = "longitude" id="longitude" required ></input>
-     </div> 
-      
-      <button type = "submit">Salvar</button>
+  return (
+    <div id="app">
+      <aside>
+        <strong>Cadastrar</strong>
+        <DevForm onSubmit={handleAddDev} />
+      </aside>
 
-   </form>
-    </aside>
-    <main>
-
-    </main>
-  </div>
- );
+      <main>
+        <ul>
+          {devs.map(dev => (
+            <DevItem key={dev._id} dev={dev} />
+          ))}          
+        </ul>
+      </main>
+    </div>
+  );
 }
 
 export default App;
