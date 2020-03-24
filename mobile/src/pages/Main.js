@@ -36,14 +36,15 @@ function Main({ navigation }) {
     async function loadDevs() {
         const { latitude, longitude } = currentRegion;
 
-        const response = await api.get('./search', {
+        const response = await api.get('/search', {
             params: {
                 latitude,
                 longitude,
                 techs
             }
         });
-        setDevs(response.data.devs);
+        console.log(response.data);
+        setDevs(response.data);
     }
 
     function handleRegionChanged(region) {
@@ -73,14 +74,13 @@ function Main({ navigation }) {
                             style={styles.avatar}
                             source={{ uri: dev.avatar_url }}
                         />
-
                         <Callout onPress={() => {
                             navigation.navigate('Profile', { github_username: dev.github_username })
                         }}>
                             <View style={styles.callout}>
-                                <Text style={styles.devName}> {dev.name}</Text>
-                                <Text style={styles.devBio}>  {dev.bio}</Text>
-                                <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
+                                <Text style={styles.devName}>{dev.name}</Text>
+                                <Text style={styles.devBio}>{dev.bio}</Text>
+                                <Text style={styles.devTechs}>{dev.techs.join(',')}</Text>
                             </View>
                         </Callout>
                     </Marker>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },
     searchForm: {
         position: 'absolute',
-        top: 20,
+        //top: 20,
         bottom: 20,
         left: 20,
         right: 20,

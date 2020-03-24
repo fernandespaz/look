@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import api from './services/api';
 
@@ -27,10 +27,10 @@ function App() {
   async function handleAddDev(data) {
     const response = await api.post('/devs', data);
     const hasDev = devs.filter(dev => dev.github_name === data.github_name);
-    
-    if(!hasDev) {
+
+    if (!hasDev) {
       setDevs([...devs, response.data])
-    }  
+    }
   }
 
   return (
@@ -44,7 +44,7 @@ function App() {
         <ul>
           {devs.map(dev => (
             <DevItem key={dev._id} dev={dev} />
-          ))}          
+          ))}
         </ul>
       </main>
     </div>
