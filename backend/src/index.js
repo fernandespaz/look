@@ -5,7 +5,7 @@ const routes = require('./routes');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://look_app:DI2530281@cluster0-bpcsz.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('string do banco de dados', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });
