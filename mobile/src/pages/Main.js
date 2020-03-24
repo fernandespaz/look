@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
     },
     searchForm: {
         position: 'absolute',
-        //top: 20,
-        bottom: 20,
+        top: 20,
         left: 20,
         right: 20,
         zIndex: 5,
