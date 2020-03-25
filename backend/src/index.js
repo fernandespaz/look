@@ -7,7 +7,7 @@ const app = express();
 
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect('mongodb+srv://diegopaz:SMa1UehBvBSxuZgn@cluster0-bpcsz.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('String do banco', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });

@@ -1,9 +1,8 @@
 const Dev = require('../models/Dev');
-const parseStringAsArray = require('../models/utils/parseStringAsArray');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
     async index(req, res) {
-        //Buscar todos os Devs num raios de x KM
         const { latitude, longitude, techs } = req.query;
 
         const techsArray = parseStringAsArray(techs);
