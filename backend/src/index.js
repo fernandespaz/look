@@ -5,7 +5,9 @@ const routes = require('./routes');
 
 const app = express();
 
-mongoose.connect('string do banco de dados', {
+mongoose.set('useCreateIndex', true);
+
+mongoose.connect('mongodb+srv://diegopaz:SMa1UehBvBSxuZgn@cluster0-bpcsz.mongodb.net/test?retryWrites=true&w=majority', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });
